@@ -146,7 +146,7 @@ const App = () => {
       <footer className="footer">
         <div className="container footer-grid">
           <div className="footer-about">
-            <img src="/logo.png" alt="Leebadu Logo" className="footer-logo" />
+            <img src="/logo.png" alt="J&O Furniture Logo" className="footer-logo" />
             <p>Crafting quality furniture since 1995. We bring modern aesthetics and comfort to your homes and offices.</p>
           </div>
           <div className="footer-links">
@@ -160,9 +160,9 @@ const App = () => {
           </div>
           <div className="footer-contact">
             <h4>Contact Us</h4>
-            <p>123 Furniture St, Interior City</p>
-            <p>Email: contact@leebadu.com</p>
-            <p>Phone: +1 234 567 890</p>
+            <p>124, Pugoda, Sri Lanka</p>
+            <p>Email: contact.jofurniture@gmail.com</p>
+            <p>Phone: +94 763498605</p>
           </div>
           <div className="footer-social">
             <h4>Follow Us</h4>
@@ -174,7 +174,7 @@ const App = () => {
           </div>
         </div>
         <div className="footer-bottom">
-          <p>&copy; 2026 Leebadu Furniture Store. All rights reserved.</p>
+          <p>&copy; 2026 J&O Furniture. All rights reserved.</p>
         </div>
       </footer>
     </div>

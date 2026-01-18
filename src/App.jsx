@@ -1,21 +1,28 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link, useParams, useNavigate } from 'react-router-dom';
-import { ShoppingCart, Menu, X, ChevronRight, Facebook, Instagram, Twitter, ArrowLeft, Plus, Minus, Star } from 'lucide-react';
+import { ShoppingCart, Menu, X, ChevronRight, Facebook, Instagram, Twitter, ArrowLeft, Plus, Minus, Star, Truck, ShieldCheck, Clock } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import './App.css';
 
-// Mock Data
+// Mock Data with LKR Prices and Corrected Names
 const PRODUCTS = [
-  { id: 'h1', category: 'home', title: 'Luxury Fabric Sofa', price: 1299, image: '/images/home/Create_me_a_4k_202601182116.jpeg', description: 'A plush, high-comfort sofa designed for modern living rooms. Features premium breathable fabric and high-density foam.' },
-  { id: 'h2', category: 'home', title: 'Elegant Dining Set', price: 899, image: '/images/home/Create_me_a_4k_202601182117.jpeg', description: 'Hand-crafted wooden dining table with four minimalist chairs. Perfect for family gatherings.' },
-  { id: 'h3', category: 'home', title: 'Modern Coffee Table', price: 450, image: '/images/home/Create_me_a_4k_202601182121.jpeg', description: 'Sleek walnut wood coffee table with a minimalist metal base.' },
-  { id: 'h4', category: 'home', title: 'Velvet Lounge Chair', price: 650, image: '/images/home/Create_me_a_4k_202601182124.jpeg', description: 'Ergonomic lounge chair upholstered in premium velvet.' },
-  { id: 'o1', category: 'office', title: 'Pro Executive Desk', price: 799, image: '/images/office/Create_me_a_4k_202601182106.jpeg', description: 'Large executive desk with cable management and high-quality finish.' },
-  { id: 'o2', category: 'office', title: 'Ergonomic Office Chair', price: 350, image: '/images/office/Create_me_a_4k_202601182112.jpeg', description: 'Fully adjustable office chair with lumbar support and breathable mesh.' },
-  { id: 'h5', category: 'home', title: 'Minimalist Bed Frame', price: 1100, image: '/images/home/Create_me_a_4k_202601182116 (1).jpeg', description: 'A sleek, modern bed frame crafted from solid oak wood.' },
-  { id: 'h6', category: 'home', title: 'Contemporary Sideboard', price: 750, image: '/images/home/Create_me_a_4k_202601182117 (1).jpeg', description: 'Stylish sideboard with ample storage space and soft-close doors.' },
-  { id: 'o3', category: 'office', title: 'Compact Workstation', price: 420, image: '/images/office/Create_me_a_4k_202601182106.jpeg', description: 'Space-saving workstation designed for home offices.' },
+  { id: 'h1', category: 'home', title: 'Luxury 3-Seater Fabric Sofa', price: 185000, image: '/images/home/Create_me_a_4k_202601182116.jpeg', description: 'A plush, high-comfort sofa designed for modern living rooms. Features premium breathable fabric and high-density foam cushions.' },
+  { id: 'h2', category: 'home', title: 'Solid Wood Dining Set', price: 125000, image: '/images/home/Create_me_a_4k_202601182117.jpeg', description: 'Hand-crafted wooden dining table with four minimalist chairs. Perfect for family gatherings and modern dining spaces.' },
+  { id: 'h3', category: 'home', title: 'Minimalist Walnut Coffee Table', price: 35000, image: '/images/home/Create_me_a_4k_202601182121.jpeg', description: 'Sleek walnut wood coffee table with a minimalist metal base. A perfect centerpiece for your living room.' },
+  { id: 'h4', category: 'home', title: 'Premium Velvet Lounge Chair', price: 45000, image: '/images/home/Create_me_a_4k_202601182124.jpeg', description: 'Ergonomic lounge chair upholstered in premium velvet with solid wood legs for ultimate relaxation.' },
+  { id: 'o1', category: 'office', title: 'Executive Management Desk', price: 75000, image: '/images/office/Create_me_a_4k_202601182106.jpeg', description: 'Large executive desk with integrated cable management and high-quality premium finish for professional spaces.' },
+  { id: 'o2', category: 'office', title: 'Modern L-Shaped Office Desk', price: 65000, image: '/images/office/Create_me_a_4k_202601182112.jpeg', description: 'Spacious L-shaped corner desk designed for maximum productivity and efficient workspace utilization.' },
+  { id: 'h5', category: 'home', title: 'Modern Solid Oak Bed Frame', price: 145000, image: '/images/home/Create_me_a_4k_202601182116 (1).jpeg', description: 'A sleek, durable bed frame crafted from solid oak wood, combining minimalist design with sturdy construction.' },
+  { id: 'h6', category: 'home', title: 'Elegant Living Room Sideboard', price: 85000, image: '/images/home/Create_me_a_4k_202601182117 (1).jpeg', description: 'Stylish storage sideboard with ample space and soft-close doors, perfect for organizing your living or dining area.' },
 ];
+
+const formatPrice = (price) => {
+  return new Intl.NumberFormat('en-LK', {
+    style: 'currency',
+    currency: 'LKR',
+    minimumFractionDigits: 0,
+  }).format(price);
+};
 
 const Navbar = ({ scrolled, isMenuOpen, setIsMenuOpen }) => (
   <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
@@ -47,7 +54,7 @@ const Footer = () => (
     <div className="container footer-grid">
       <div className="footer-about">
         <img src="/logo.png" alt="J&O Furniture Logo" className="footer-logo" />
-        <p>Crafting quality furniture since 1995. We bring modern aesthetics and comfort to your homes and offices.</p>
+        <p>Crafting quality furniture since 1995. We bring modern aesthetics and comfort to your homes and offices across Sri Lanka.</p>
       </div>
       <div className="footer-links">
         <h4>Quick Links</h4>
@@ -88,15 +95,13 @@ const ProductCard = ({ product }) => (
       <img src={product.image} alt={product.title} />
       <div className="card-info">
         <h3>{product.title}</h3>
-        <p>${product.price}</p>
+        <p>{formatPrice(product.price)}</p>
       </div>
     </Link>
   </motion.div>
 );
 
 const Home = () => {
-  const furnitureImages = PRODUCTS.map(p => p.image);
-
   return (
     <>
       {/* Hero Section */}
@@ -148,18 +153,20 @@ const Home = () => {
               x: {
                 repeat: Infinity,
                 repeatType: "loop",
-                duration: 20,
+                duration: 25,
                 ease: "linear",
               },
             }}
           >
-            {[...furnitureImages, ...furnitureImages].map((img, idx) => (
+            {[...PRODUCTS, ...PRODUCTS].map((product, idx) => (
               <div key={idx} className="furniture-card">
-                <img src={img} alt={`Furniture ${idx}`} />
-                <div className="card-info">
-                  <h3>Premium Piece</h3>
-                  <p>$1,299</p>
-                </div>
+                <Link to={`/product/${product.id}`}>
+                  <img src={product.image} alt={product.title} />
+                  <div className="card-info">
+                    <h3>{product.title}</h3>
+                    <p>{formatPrice(product.price)}</p>
+                  </div>
+                </Link>
               </div>
             ))}
           </motion.div>
@@ -221,7 +228,7 @@ const ProductPage = () => {
               {[...Array(5)].map((_, i) => <Star key={i} size={16} fill={i < 4 ? "var(--accent)" : "none"} color="var(--accent)" />)}
               <span style={{ marginLeft: '10px', color: '#666' }}>(24 reviews)</span>
             </div>
-            <p className="price">${product.price}</p>
+            <p className="price">{formatPrice(product.price)}</p>
             <p className="description">{product.description}</p>
 
             <div className="actions">
@@ -234,9 +241,9 @@ const ProductPage = () => {
             </div>
 
             <div className="meta">
-              <p><strong>Availability:</strong> In Stock</p>
-              <p><strong>Shipping:</strong> Free Delivery in Sri Lanka</p>
-              <p><strong>Warranty:</strong> 5 Years Company Warranty</p>
+              <p><Truck size={18} style={{ marginRight: '10px', verticalAlign: 'middle' }} /> <strong>Delivery:</strong> Charges based on location. <strong>Within Colombo Area: FREE.</strong></p>
+              <p><Clock size={18} style={{ marginRight: '10px', verticalAlign: 'middle' }} /> <strong>Availability:</strong> In Stock (Ready to Deliver)</p>
+              <p><ShieldCheck size={18} style={{ marginRight: '10px', verticalAlign: 'middle' }} /> <strong>Warranty:</strong> 5 Years J&O Company Warranty</p>
             </div>
           </div>
         </div>
@@ -274,9 +281,6 @@ const App = () => {
               <Link to="/home-furniture" onClick={() => setIsMenuOpen(false)}>Home Furniture</Link>
               <Link to="/office-furniture" onClick={() => setIsMenuOpen(false)}>Office Furniture</Link>
               <Link to="/about" onClick={() => setIsMenuOpen(false)}>About Us</Link>
-              <Link to="#" className="mobile-cart">
-                <ShoppingCart size={20} /> Shopping Cart
-              </Link>
             </motion.div>
           )}
         </AnimatePresence>

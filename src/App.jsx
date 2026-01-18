@@ -84,7 +84,7 @@ const App = () => {
           <img src="/images/Hero.jpeg" alt="Furniture Showroom" className="hero-bg" />
           <div className="hero-overlay" />
         </div>
-        <div className="container hero-content">
+        <div className="hero-content">
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}

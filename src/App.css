@@ -71,7 +71,8 @@ img {
   transition: var(--transition);
 }
 
-.navbar.scrolled {
+.navbar.scrolled,
+.navbar.subpage {
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px);
   height: 80px;
@@ -104,7 +105,8 @@ img {
   transition: var(--transition);
 }
 
-.navbar.scrolled .nav-link {
+.navbar.scrolled .nav-link,
+.navbar.subpage .nav-link {
   color: var(--text);
 }
 
@@ -130,7 +132,8 @@ img {
   transition: var(--transition);
 }
 
-.navbar.scrolled .cart-icon {
+.navbar.scrolled .cart-icon,
+.navbar.subpage .cart-icon {
   color: var(--text);
 }
 
@@ -151,8 +154,85 @@ img {
   color: white;
 }
 
-.navbar.scrolled .mobile-toggle {
+.navbar.scrolled .mobile-toggle,
+.navbar.subpage .mobile-toggle {
   color: var(--text);
+}
+
+/* Admin Styles */
+.admin-login {
+  max-width: 400px;
+  margin: 15vw auto;
+  padding: 40px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+}
+
+.admin-login h2 {
+  margin-bottom: 25px;
+  text-align: center;
+  font-family: var(--font-hero);
+}
+
+.admin-login input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.admin-dashboard {
+  padding: 100px 50px;
+}
+
+.admin-dashboard h1 {
+  font-family: var(--font-hero);
+  margin-bottom: 30px;
+}
+
+.admin-table-wrapper {
+  overflow-x: auto;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 1000px;
+}
+
+.admin-table th,
+.admin-table td {
+  padding: 15px;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+}
+
+.admin-table th {
+  background: var(--bg-soft);
+  font-weight: 700;
+  color: var(--text-light);
+}
+
+.admin-table input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #eee;
+  border-radius: 4px;
+  font-family: inherit;
+}
+
+.admin-table .save-btn {
+  background: var(--accent);
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 4px;
+  cursor: pointer;
 }
 
 /* Hero Section */

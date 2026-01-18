@@ -108,7 +108,10 @@ const Home = ({ products }) => {
     <>
       <section className="hero">
         <div className="hero-image-container">
-          <img src="/images/Hero.webp" alt="Furniture Showroom" className="hero-bg" />
+          <picture>
+            <source media="(max-width: 768px)" srcSet="/images/Hero-Mobile.webp" />
+            <img src="/images/Hero.webp" alt="Furniture Showroom" className="hero-bg" />
+          </picture>
           <div className="hero-overlay" />
         </div>
         <div className="hero-content">
